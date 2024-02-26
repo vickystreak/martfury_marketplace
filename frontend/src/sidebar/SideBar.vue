@@ -1,263 +1,197 @@
-<!-- <template> -->
-  <div class="grid-container ">
-    <!-- header -->
+<template>
+  <div>
+    <div>
+      <aside style="position: fixed;">
+        <div class="sidebar-heading row">
+          <div class="col-2 heading-img-div">
+            <!-- <input class="profile-img" type="image" src="" alt="" /> -->
+          </div>
+          <span class="col-8 mt-2">
+            <p>
+              <span class="text-gray-color">Hello,</span>
 
-    <header class="header">
-      <div class="menu-icon">
-        <button><span class="material-icons-outlined"> menu </span></button>
-      </div>
-      <div class="header-left">
-        <span class="material-icons-outlined"> search </span>
-      </div>
-      <div class="header-right">
-        <font-awesome-icon
-          class="header-right-icons"
-          icon="fa-solid fa-bell"
-          size="lg"
-          style="color: black"
-        />
-        <font-awesome-icon
-          class="header-right-icons"
-          icon="fa-solid fa-envelope"
-          size="lg"
-          style="color: black"
-        />
-        <font-awesome-icon
-          id="popover-icon"
-          aria-hidden="true"
-          @click="togglePopover"
-          class="header-right-icons"
-          icon="fa-solid fa-user"
-          size="lg"
-          style="color: black"
-        />
-        <div class="popover" :class="{ active: isPopoverActive }">
-          Popover content goes here
+              <span>
+                <h6>{{ session.user }}</h6></span
+              >
+            </p></span
+          >
+          <!-- <div class="col-2"> -->
+          <!-- <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" /> -->
+          <!-- <font-awesome-icon icon="fa-solid fa-right-from-bracket" /> -->
+          <!-- </div> -->
+
+          <div class="col-2" @click="showButton">
+            <font-awesome-icon icon="fa-solid fa-right-from-bracket" />
+          </div>
+
+          <div ref="buttonContainer">
+            <button
+              v-show="isButtonVisible"
+              ref="logoutButton"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-container="body"
+              data-bs-toggle="popover"
+              data-bs-placement="right"
+              data-bs-content="Right popover"
+              @click="session.logout.submit()"
+            >
+              Logout
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
 
-    <!-- sidebar -->
-    <aside id="sidebar">
-      <div class="sidebar-title">
-        <div class="sidebar-brand">
+        <div class="earnings-div" v-for="sale in sales.data" :key="sale">
+          <p>
+            <span class="text-gray-color">Earning </span>
+            <span> <h3>&#8377; {{ sale.earnings }}</h3></span>
+          </p>
+        </div>
+        <div class="sidebar-list-div">
+          <ul class="sidebar-list">
+            <li class="sidebar-list-item">
+              <router-link to="/" class="router">
+                <div class="list-div">
+                  <h6>
+                    <span class="list-icons"
+                      ><font-awesome-icon
+                        icon="fa-solid fa-table-cells-large"
+                        size="sm" /></span
+                    >Dashboard
+                  </h6>
+                </div>
+              </router-link>
+            </li>
+            <li class="sidebar-list-item">
+              <router-link to="/products" class="router"
+                ><div class="list-div">
+                  <h6>
+                    <span class="list-icons"
+                      ><font-awesome-icon icon="fa-solid fa-database" size="sm"
+                    /></span>
+                    Products
+                  </h6>
+                </div></router-link
+              >
+            </li>
+            <li class="sidebar-list-item">
+              <div class="list-div">
+                <h6>
+                  <span class="list-icons"
+                    ><font-awesome-icon icon="fa-solid fa-suitcase" size="sm"
+                  /></span>
+                  Sales
+                </h6>
+              </div>
+            </li>
+            <li class="sidebar-list-item">
+              <div class="list-div">
+                <h6>
+                  <span class="list-icons"
+                    ><font-awesome-icon icon="fa-solid fa-envelope" size="sm"
+                  /></span>
+                  Messages
+                </h6>
+              </div>
+            </li>
+            <li class="sidebar-list-item">
+              <router-link to="/orders" class="router">
+                <div class="list-div">
+                  <h6>
+                    <span class="list-icons"
+                      ><font-awesome-icon
+                        icon="fa-solid fa-cart-shopping"
+                        size="sm" /></span
+                    >Orders
+                  </h6>
+                </div>
+              </router-link>
+            </li>
+            <li class="sidebar-list-item">
+              <div class="list-div">
+                <h6>
+                  <span class="list-icons"
+                    ><font-awesome-icon
+                      icon="fa-solid fa-chart-simple"
+                      size="sm" /></span
+                  >Analytics
+                </h6>
+              </div>
+            </li>
+            <li class="sidebar-list-item">
+              <div class="list-div">
+                <h6>
+                  <span class="list-icons"
+                    ><font-awesome-icon
+                      icon="fa-solid fa-money-bill"
+                      size="sm" /></span
+                  >Payouts
+                </h6>
+              </div>
+            </li>
+            <li class="sidebar-list-item">
+              <div class="list-div">
+                <h6>
+                  <span class="list-icons"
+                    ><font-awesome-icon
+                      icon="fa-solid fa-gear"
+                      size="sm" /></span
+                  >Settings
+                </h6>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <br />
+        <div class="sidebar-footer">
           <span class="mart-fury">
             <h4>mart</h4>
             <h4>fury</h4>
           </span>
+          <span class="copyrights"
+            ><p>
+              <font-awesome-icon icon="fa-regular fa-copyright" />
+              <span class="text-gray-color"
+                >2024 MartFury Marketplace <br />All Rights Reserved</span
+              >
+            </p></span
+          >
         </div>
-        <span class="material-icons-outlined"> close </span>
-      </div>
-
-      <ul class="sidebar-list">
-        <router-link to="/">
-          <li class="sidebar-list-item">
-            <font-awesome-icon
-              icon="fa-solid fa-table-cells-large"
-              size="lg"
-              style="color: #931f63"
-            />
-            <h4>Dashboard</h4>
-          </li>
-        </router-link>
-
-        <router-link to="/products">
-          <li class="sidebar-list-item">
-            <font-awesome-icon
-              icon="fa-solid fa-database"
-              size="lg"
-              style="color: #931f63"
-            />
-            <h4>Products</h4>
-          </li>
-        </router-link>
-
-        <router-link to="/sales">
-          <li class="sidebar-list-item">
-            <font-awesome-icon
-              icon="fa-solid fa-money-bill"
-              size="lg"
-              style="color: #931f63"
-            />
-            <h4>Sales</h4>
-          </li>
-        </router-link>
-
-        <router-link to="/orders">
-          <li class="sidebar-list-item">
-            <font-awesome-icon
-              icon="fa-solid fa-cart-shopping"
-              size="lg"
-              style="color: #931f63"
-            />
-            <h4>Orders</h4>
-          </li>
-        </router-link>
-
-        <router-link to="/payouts">
-          <li class="sidebar-list-item">
-            <font-awesome-icon
-              icon="fa-solid fa-credit-card"
-              size="lg"
-              style="color: #931f63"
-            />
-            <h4>Payouts</h4>
-          </li>
-        </router-link>
-
-        <li class="sidebar-list-item">
-          <font-awesome-icon
-            icon="fa-solid fa-gear"
-            size="lg"
-            style="color: #931f63"
-          />
-          <h4>Settings</h4>
-        </li>
-      </ul>
-    </aside>
+      </aside>
+    </div>
   </div>
-<!-- </template> -->
+</template>
+
 <script setup>
+import { createListResource } from 'frappe-ui';
+import { session } from '../data/session'
+import { userResource } from '../data/user'
+import { ref, watch } from 'vue'
+
+const isButtonVisible = ref(false)
+let autoHideTimeout
+const buttonContainer = ref(null)
+
+const showButton = () => {
+  isButtonVisible.value = true
+  autoHideTimeout = setTimeout(() => {
+    hideButton()
+  }, 3000) // 3 seconds
+}
+
+const hideButton = () => {
+  isButtonVisible.value = false
+  clearTimeout(autoHideTimeout)
+}
+
+const sales = createListResource({
+  doctype: 'Sales',
+  fields: ['name', 'total_orders', 'amount', 'earnings'],
+  limit: 1,
+  order_by: 'modified desc',
+})
+sales.reload()
 </script>
-<!-- <style scoped> -->
-/* .grid-container {
-  display: grid;
-  grid-template-columns: 230px 1fr 1fr 1fr;
-  grid-template-rows: 0.2fr 3fr;
-  grid-template-areas:
-    'sidebar header header header'
-    'sidebar main main main';
-  height: 100vh;
-} */
-/* .sidebar-list-item span h4 {
-  display: inline;
-  margin: 0;
-} */
 
-/* popover */
-/* .popover {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-}
-
-.popover.active {
-  display: block;
-}
-
-#popover-icon {
-  cursor: pointer;
-}
-
-.sidebar-list-item {
-  display: flex;
-  align-items: center; Align items vertically
-}
-
-.sidebar-list-item h4 {
-  padding: 10px;
-} */
-
-/* Logo style  */
-
-/* .mart-fury {
-  display: inline-block; Ensure inline display
-} */
-/* 
-.mart-fury h4 {
-  display: inline; Display each <h4> inline
-  margin: 0; Remove default margins
-  font-family: 'Protest Guerrilla', sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  font-style: normal;
-}
-.mart-fury h4:first-of-type {
-  color: black; Style the first word (Mart)
-} */
-/* 
-.mart-fury h4:last-of-type {
-  color: #ffc300;            Style the second word (Fury)
-} */
-/* .menu-icon {
-  display: none;
-}
-
-.header-right-icons {
-  padding: 5px;
-}
-
-.sidebar-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 20px 20px 20px;
-  margin-bottom: 30px;
-}
-
-.sidebar-title > span {
-  display: none;
-}
-
-.sidebar-brand {
-  margin-top: 15px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.sidebar-list {
-  padding: 0;
-  margin-top: 15px;
-  list-style-type: none;
-}
-.sidebar-list-item {
-  padding: 10px 10px;
-  font-size: larger;
-}
-
-.list-icons {
-  margin-top: 10px;
-}
-.sidebar-list-item:hover {
-  background-color: red;
-  cursor: pointer;
-}
-
-.material-icon-outlined {
-  vertical-align: middle;
-  line-height: 1px;
-} */
-
-/* Header Section */
-/* .header {
-  grid-area: header;
-  height: 50px;
-  background-color: #7da0fa;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px 0 30px;
-  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-} */
-/* Sidebar section*/
-/* #sidebar {
-  grid-area: sidebar;
-  height: 100%;
-  background-color: #ced2cc;
-  overflow-y: auto;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
-} */
-/*Main-Container section*/
-/* .main-container {
-  grid-area: main;
-  background-color: #fef8dd;
-  overflow-y: auto;
-  padding: 20px 20px;
-} */
-<!-- </style> -->
-
+<style scoped>
+</style>

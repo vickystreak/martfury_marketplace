@@ -35,8 +35,6 @@ export const session = reactive({
       userResource.reset()
       session.user = sessionUser()
       router.replace({ name: 'Login' })
-      alert('Successfully Logged Out')
-      userResource.reload()
     },
   }),
   user: sessionUser(),

@@ -4,36 +4,43 @@ import { userResource } from '@/data/user'
 
 const routes = [
   {
+    path: '/',
+    name: 'Home',
+    components:{
+      default: () => import('@/pages/Home.vue'),
+      sidebar: () => import('@/sidebar/SideBar.vue')
+    }
+  },
+  {
     name: 'Login',
     path: '/account/login',
     component: () => import('@/pages/Login.vue'),
   },
   {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/pages/Home.vue'),
-  },
-  
-  {
-    name:'Products',
     path:'/products',
-    component: () => import('@/pages/Products.vue'),
+    name:'Products',
+    components:{
+      default:() => import('@/pages/ProductPage.vue'),
+      sidebar:() => import('@/sidebar/SideBar.vue')
+    }
+
   },
   {
-    name:'Sales',
-    path:'/sales',
-    component: () => import('@/pages/Sales.vue'),
-  },
-  {
-    name:'Orders',
     path:'/orders',
-    component: () => import('@/pages/Orders.vue'),
+    name:'Orders',
+    components:{
+      default:() => import('@/pages/Orders.vue'),
+      sidebar:() => import('@/sidebar/SideBar.vue')
+    }
   },
   {
-    name:'Payouts',
-    path:'/payouts',
-    component: () => import('@/pages/Payouts.vue'),
-  },
+    path:'/neworder',
+    name:'Neworder',
+    components:{
+      default:() => import('@/pages/NewOrder.vue'),
+      sidebar:() => import('@/sidebar/SideBar.vue')
+    }
+  }
 ]
 
 let router = createRouter({

@@ -1,2 +1,120 @@
 @import './assets/Inter/inter.css';
 @import 'frappe-ui/src/style.css';
+
+.grid-container {
+  height: 100vh;
+  max-width: 100%;
+  background-color: #edeae8;
+}
+
+.sidebar {
+  background-color: #edeae8;
+  overflow-y: hidden;
+}
+.sidebar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+}
+.heading-img-div {
+  border: solid 1px black;
+  border-radius: 50%;
+  height: 2.8rem;
+  background-image: url('https://media.gettyimages.com/id/1288827929/photo/fuerstenwalde-germany-tesla-head-elon-musk-arrives-to-have-a-look-at-the-construction-site-of.jpg?s=612x612&w=0&k=20&c=FFYjKTMGsJK6RbCuGYy7sBlH-PymrF9QxpyHoeHi42k=');
+  overflow: hidden;
+  background-repeat: round;
+}
+.earnings-div {
+  padding: 0px 0.3rem 0px 0.3rem;
+  border-bottom: solid 1px #737373;
+  margin-left: 0.4rem;
+}
+
+.sidebar-list {
+  padding: 0;
+  margin-top: 1rem;
+  margin-left: 0.8rem;
+  list-style-type: none;
+  
+}
+.router {
+  text-decoration: none !important;
+  color: white;
+} 
+.route-link:hover{
+  color: #ffad01;
+ }
+.sidebar-list-item {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  text-decoration: none;
+  padding: 0.3rem 0.3rem;
+  margin-left: 1.2rem;
+  
+}
+.list-div{
+  /* border-right:solid 1px #f77408; */
+  padding-right: 4rem;
+}
+.list-div:hover{
+  border-right: solid 2px #ffad01 !important;
+}
+.list-div:hover .list-icons {
+  color: #ffad01 !important;
+}
+
+.list-div:hover h6  {
+  color: #ffad01 !important;
+}
+
+.sidebar-list-item h6 {
+  font-size: 15px;
+}
+.sidebar-list h6{
+  color: black !important;
+}
+.list-icons {
+  padding-right: 1rem;
+}
+.sidebar-footer{
+  padding: 0px 5px 0px 5px;
+  margin-left: 1rem;
+  margin-top: 1.2rem;
+}
+
+.mart-fury {
+  display: inline-block;
+}
+.mart-fury h4 {
+  display: inline;
+  margin: 0;
+  font-weight: 600;
+  font-size: 30px;
+  font-style: normal;
+  font-family: "Annapurna SIL", serif;
+  font-weight: 700;
+  font-style: normal;
+  
+}
+.mart-fury h4:first-of-type {
+  color: black; /* Style the first word (Mart) */
+}
+
+.mart-fury h4:last-of-type {
+  color: #ffad01; /* Style the second word (Fury) */
+}
+.copyrights p{
+font-size: 13px;
+}
+.main {
+  background-color: white;
+  overflow-y: auto;
+  border-radius: 30px 0px 0px 30px;
+  z-index: 1;
+}
+.text-gray-color{
+  color: #737373;
+  font-weight: 500;
+}
+
